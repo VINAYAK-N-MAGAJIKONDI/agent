@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pymongo
+python-dotenv
+crewai
+googletrans==4.0.0-rc1
+langchain
+faiss-cpu
