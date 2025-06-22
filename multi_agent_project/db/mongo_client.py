@@ -1,11 +1,13 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from datetime import datetime, timedelta
+import os
+from dotenv import load_dotenv
 
-uri = "mongodb+srv://vinayak:8BVKwdb2sT4dlqqG@cluster0.ww5e8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+load_dotenv()
+
+uri = os.getenv("MONGO_URI")
 client = MongoClient(uri, server_api=ServerApi('1'), tls=True, tlsAllowInvalidCertificates=True)
-
-
 
 try:
     client.admin.command('ping')
@@ -14,9 +16,6 @@ except Exception as e:
     print(e)
 
 db = client["qest"] 
-
-
-
 
 required_collections = ["clients", "orders", "payments", "courses", "classes", "attendance"]
 existing_collections = db.list_collection_names()
